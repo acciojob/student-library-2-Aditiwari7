@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -90,7 +90,7 @@ public class TransactionService {
 
         List<Transaction> transactions = transactionRepository5.find(cardId, bookId, TransactionStatus.SUCCESSFUL, true);
         Transaction transaction = transactions.get(transactions.size() - 1);
-        Data issueDate = (Data) transaction.getTransactionDate();
+        Date issueDate = transaction.getTransactionDate();
         long timeIssuetime = Math.abs(System.currentTimeMillis() - issueDate.getTime());
         long noOfDaysPassed = TimeUnit.DAYS.convert(timeIssuetime, TimeUnit.MILLISECONDS);
 
